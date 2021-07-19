@@ -12,7 +12,7 @@ const authenticateToken = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err)
             return res.status(403).json({
-                'message': 'forbidden access, token not match',
+                'message': 'forbidden access, token not match or expired',
             });
 
         req.user = user;

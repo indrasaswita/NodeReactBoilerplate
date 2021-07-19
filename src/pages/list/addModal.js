@@ -10,7 +10,7 @@ import {
     Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { addUser } from '../../actions/userAction';
+import { addUser } from '../../actions/usersAction';
 import PropTypes from 'prop-types';
 import {faCoffee} from "@fortawesome/pro-duotone-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

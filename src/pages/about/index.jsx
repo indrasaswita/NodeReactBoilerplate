@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
+import { Container } from "reactstrap";
+import { connect } from 'react-redux';
 
 class About extends Component {
-    render() {
-        return <div className="About">This is About Us page.</div>;
-    }
+
+	render() {
+		return <Container className="About">
+			This is About Us page.
+		</Container>;
+	}
+
 };
 
-export default About;
+About.propTypes = {
+
+};
+
+const mapStateToProps = state => ({
+
+});
+
+export default connect(mapStateToProps, {
+
+})(About);

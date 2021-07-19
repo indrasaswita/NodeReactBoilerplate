@@ -1,0 +1,28 @@
+.HeaderWrapper {
+  background-color: #444;
+  display: flex;
+  justify-content: center; }
+  .HeaderWrapper .NavbarWrapper {
+    padding: 0 calc(20px + 2vw);
+    text-align: right; }
+    .HeaderWrapper .NavbarWrapper ul {
+      display: inline-flex;
+      flex-direction: row;
+      margin: 0;
+      padding: 0; }
+      .HeaderWrapper .NavbarWrapper ul li {
+        list-style: none;
+        display: inline-flex; }
+  .HeaderWrapper a,
+  .HeaderWrapper button {
+    color: white;
+    font-weight: bold;
+    border: 0;
+    background-color: transparent;
+    height: 100%;
+    padding: calc(9px + 0.9vw) calc(12px + 1.2vw); }
+    .HeaderWrapper a:hover, .HeaderWrapper a:focus,
+    .HeaderWrapper button:hover,
+    .HeaderWrapper button:focus {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.85); }

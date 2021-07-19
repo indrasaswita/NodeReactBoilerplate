@@ -8,7 +8,7 @@ const auth = require('./../../middlewares/auth');
 const router = express.Router();
 
 // Cash Category Model
-const { Cashcategory } = model.cashcategory;
+const { Cashcategory: Cashcategories } = model.cashcategory;
 
 /**
  * @method  GET
@@ -17,7 +17,7 @@ const { Cashcategory } = model.cashcategory;
  * @access  Public
  */
 router.get('/', auth.authenticateToken, (req, res) => {
-   Cashcategory.find()
+   Cashcategories.find()
        .sort({created_at: -1})
        .then(cashcategories => res.json({
            message: 'success',

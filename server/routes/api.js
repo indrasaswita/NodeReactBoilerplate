@@ -16,12 +16,14 @@
 // }
 const express = require('express');
 const router = express.Router();
-const user = require('./api/user');
-const cashcategory = require('./api/cashcategory');
+const users = require('./api/users');
+const auth = require('./api/auth');
+const cashcategories = require('./api/cashcategories');
 
 
-router.use('/user', user);
-router.use('/cashcategory', cashcategory);
+router.use('/auth', auth);
+router.use('/users', users);
+router.use('/cashcategories', cashcategories);
 
 
 module.exports = router;

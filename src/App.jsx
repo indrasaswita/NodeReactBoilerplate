@@ -6,50 +6,56 @@ import List from './pages/list';
 import About from './pages/about';
 import Register from './pages/register';
 import Login from './pages/login';
+import { mapCookieToAuth } from "./actions/authAction";
 
-import { Provider } from 'react-redux';
-import store from './store';
+import Cookies from "universal-cookie";
+import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import Header from "./components/header/index";
 
+const cookies = new Cookies();
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+
+    const auth = {
+      user: cookies.get('auth_user'),
+      token: cookies.get('auth_token'),
+    };
+
+    this.props.mapCookieToAuth(auth);
+  }
+
   render() {
     return (
-        <Provider store={store}>
+        <div className="AppWrapper">
           <Router>
-            <div>
-              <h2>Welcome</h2>
-              <ul>
-                <li>
-                  <Link to={'/'} className="nav-link">Home</Link>
-                </li>
-                <li>
-                  <Link to={'/about'} className="nav-link">About</Link>
-                </li>
-                <li>
-                  <Link to={'/list'} className="nav-link">List</Link>
-                </li>
-                <li>
-                  <Link to={'/signup'} className="nav-link">Register</Link>
-                </li>
-                <li>
-                  <Link to={'/login'} className="nav-link">Login</Link>
-                </li>
-              </ul>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/list" component={List} />
-
-                <Route exact path="/list/list" component={List} />
-                <Route exact path="/signup" component={Register} />
-                <Route exact path="/signin" component={Login} />
-              </Switch>
-            </div>
+            <Header />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/list" component={List} />
+              <Route exact path="/signup" component={Register} />
+              <Route exact path="/signin" component={Login} />
+            </Switch>
           </Router>
-        </Provider>
+        </div>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  mapCookieToAuth: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, {
+  mapCookieToAuth,
+})(App);

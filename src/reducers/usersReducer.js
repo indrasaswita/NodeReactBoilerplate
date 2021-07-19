@@ -1,36 +1,36 @@
-import { GET_USERS, ADD_USERS, DELETE_USERS, USERS_LOADING } from "../actions/types";
+
+
+import {
+    USERS_GET,
+    USERS_ADD,
+    USERS_DELETE,
+    USERS_LOADING
+} from "./../enums/types";
 
 const initialState = {
     users: [],
     loading: false,
 };
 
-const userReducer = (state = initialState, action) => {
-    console.log(state);
-    console.log({
-        ...state,
-    });
+const usersReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_USERS:
-            console.log(action.payload);
-
+        case USERS_GET:
             return {
                 ...state,
-                users: action.payload,
+                users: action.payload.users,
+                loading: false,
+            };
+        case USERS_DELETE:
+            return {
+                ...state,
+                users: state.users.filter(user => user._id !== action.payload._id),
                 loading: false,
             };
 
-        case DELETE_USERS:
+        case USERS_ADD:
             return {
                 ...state,
-                users: state.users.filter(user => user._id !== action.payload),
-                loading: false,
-            };
-
-        case ADD_USERS:
-            return {
-                ...state,
-                users: [action.payload, ...state.users],
+                users: [action.payload.users, ...state.users],
                 loading: false,
             };
 
@@ -46,4 +46,4 @@ const userReducer = (state = initialState, action) => {
 };
 
 
-export default userReducer;
+export default usersReducer;
